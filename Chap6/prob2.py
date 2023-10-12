@@ -1,7 +1,6 @@
 from operator import itemgetter
 
-scores = { "Moe" : 1000, "Larry" : 1500, "Curly" : 3000 }
-zxcv = {}
+scores = [ (1000, "Moe"), (1500, "Larry"), (3000, "Curly") ]
 while True:
 	print("\n\tHigh Scores Keeper")
 	print("\n\t0 - Quit")
@@ -16,11 +15,15 @@ while True:
 	elif n == 2:
 		name = input("What is player's name?: ")
 		score = input("What score did the player get?: ")
-		scores[name] = score
+		entry = (score, name)
+		score = int(score)
+		scores.append(entry)
+		score = int(score)
 
 	else:
 		print("\nHigh Scores")
 		print("\nNAME\tSCORE")
-		zxcv = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-		for key, value in zxcv.items():
-			print(key,"\t",value)
+		scores.sort(reverse=True)
+		for entry in scores:
+			score, name = entry
+			print(name, "\t", score)
