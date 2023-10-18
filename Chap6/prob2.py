@@ -15,10 +15,9 @@ while True:
 	elif n == 2:
 		name = input("What is player's name?: ")
 		score = input("What score did the player get?: ")
+		score = int(score)
 		entry = (score, name)
-		score = int(score)
 		scores.append(entry)
-		score = int(score)
 
 	else:
 		print("\nHigh Scores")
