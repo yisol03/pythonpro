@@ -52,6 +52,7 @@ def display_word(word, guessed_letters):
 def main():
     word_to_guess = choose_word()
     guessed_letters = []
+    correct = []
     max_attempts = 7
     wrong_attempts = 0
 
@@ -62,24 +63,27 @@ def main():
         guess = input("Enter your guess: ").upper()
 
         if len(guess) != 1 or not guess.isalpha():
-            print("올바른 글자를 입력하세요.")
+            print("Please enter the correct letter.")
             continue
 
         if guess in guessed_letters:
-            print("이미 추측한 글자입니다.")
+            print("It's a letter I've already guessed.")
             continue
 
         guessed_letters.append(guess)
 
         if guess in word_to_guess:
-            if set(word_to_guess) == set(guessed_letters):
-                print(f"축하합니다! 정답은 '{word_to_guess}'입니다.")
+            print("Yes!", guess, "is in the word!")
+            correct.append(guess)
+            print(correct,"\n", word_to_guess)
+            if word_to_guess == correct:
+                print("Congratulations! The answer is" ,{word_to_guess})
                 break
         else:
             wrong_attempts += 1
-            print("틀렸습니다.")
+            print("Incorrect!")
             if wrong_attempts == max_attempts:
-                print("게임 오버! 단어는 '{word_to_guess}'였습니다.")
+                print("Game Over! Word was", {word_to_guess})
                 break
 
         hangman_display = draw_hangman(wrong_attempts)
